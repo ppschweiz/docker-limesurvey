@@ -1,0 +1,13 @@
+#!/bin/bash
+
+docker kill limesurvey
+docker rm limesurvey
+docker run -d \
+	--name limesurvey \
+	-e LS_DB_HOST=172.17.0.1 \
+	-e LS_DB_NAME=limesurvey \
+	-e LS_DB_USER=limesurvey \
+	-e LS_DB_PASS=secret \
+	-p 80:80 \
+	exception/limesurvey \
+	$1
